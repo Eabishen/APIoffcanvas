@@ -13,6 +13,23 @@ body {
     overflow-x: hidden !important;
 }
 
+.pagemark {
+    /* position: sticky !important;
+    bottom: 1%;
+    right: 1%;
+    z-index: 99999; */
+    text-align: end;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    z-index: 1;
+}
+.pagemark img {
+    width: 40%;
+    margin-bottom: 10px;
+}
+
 .filtermain {
     /* position: relative; */
     /* overflow-x: hidden !important; */
@@ -243,6 +260,11 @@ body {
 }  */
 
 @media (max-width: 425px) {
+    .pagemark {
+        bottom: 10%;
+        font-size: 12px;
+        opacity: 0.3;
+    }
     .multicards {
         /* padding-right: 10px; */
         transform: scale(1);
@@ -288,9 +310,6 @@ body {
         visibility: visible;
         margin-left: 0px;
     }
-}
-
-@media (max-width: 320px) {
 }
 
 @media (max-width: 375px) {
