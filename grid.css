@@ -293,6 +293,17 @@ body {
 @media (max-width: 320px) {
 }
 
+@media (max-width: 375px) {
+    .inner-cont {
+        margin-left: -10px !important;
+    }
+}
+@media (max-width: 370px) {
+    .inner-cont {
+        margin-left: -20px !important;
+    }
+}
+
 /* .inner-cont {
     display: flex;
     flex-wrap: wrap;
