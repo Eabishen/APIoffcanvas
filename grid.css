@@ -10,7 +10,19 @@ body {
     margin: 0;
     overscroll-behavior: contain !important;
     position: relative !important;
-    overflow-x: hidden !important;
+    /* overflow-x: hidden !important; */
+}
+
+*::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+*::-webkit-scrollbar-track {
+    background: #424242;
+}
+
+*::-webkit-scrollbar-thumb {
+    background: #8d8d8d;
 }
 
 .pagemark {
@@ -24,15 +36,17 @@ body {
     align-items: center;
     justify-content: end;
     z-index: 1;
+    right: 5px;
 }
 .pagemark img {
     width: 40%;
     margin-bottom: 10px;
 }
-
-.filtermain {
-    /* position: relative; */
-    /* overflow-x: hidden !important; */
+.sidebarcont {
+    max-width: 20% !important;
+    width: 60px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    background-color: #fff;
 }
 
 .main-row {
@@ -42,7 +56,7 @@ body {
 .multicards {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    padding-top: 50px;
+    padding-top: 5px;
     /* align-content: flex-start; */
     /* overflow: hidden !important; */
     box-sizing: border-box;
@@ -51,12 +65,14 @@ body {
 .multicards .card {
     /* background: url(/design.png) no-repeat;
     background-size: cover; */
-    margin: 10px !important;
+    width: 24rem;
+    height: 19.5rem;
 }
 
 .fullpartbtn {
-    color: #fff;
-    border-radius: 05px 10px 05px 10px;
+    border-radius: 05px;
+    background-color: rgba(192, 192, 192, 0.2);
+    font-size: 12px;
 }
 
 .filter-cont {
@@ -65,7 +81,7 @@ body {
 
 .filter-card {
     position: sticky !important;
-    top: 40px;
+    top: 20px;
 
     /* margin-left: -30px !important; */
     /* margin-right: -50px !important; */
@@ -127,15 +143,16 @@ body {
 }
 
 .bottombutton {
+    display: none !important;
     position: sticky !important;
     bottom: 5px !important;
-    visibility: hidden;
+    /* visibility: hidden; */
     /* width: 120vw; */
     z-index: 100 !important;
 }
 
 .multicards .card {
-    margin: 10px;
+    margin: 5px;
     box-shadow: 0 8px 22px rgba(0, 0, 0, 0.3);
 
     border: none;
@@ -150,11 +167,12 @@ body {
 }
 
 .inner-cont .p {
+    text-align: center;
     border-radius: 20px;
     text-align: start;
     padding: 6px;
-    width: 155px;
-    margin-top: 10px;
+    width: 151px;
+    margin: 5px auto;
     background-color: rgb(192, 192, 192);
     color: rgb(112, 112, 112);
 }
@@ -171,12 +189,6 @@ body {
 }
 
 @media (max-width: 800px) {
-    body {
-        overflow-x: hidden !important;
-    }
-    .main-row {
-        overflow: hidden !important;
-    }
     .filter-cont {
         margin-right: 500px;
         display: flex;
@@ -190,7 +202,6 @@ body {
         grid-template-columns: 1fr 1fr;
         padding-left: 0 !important;
         padding-right: 0 !important;
-        transform: scale(0.9);
         overflow: hidden !important;
     }
     .filtersmallscreen {
@@ -199,13 +210,14 @@ body {
     .multicards .card {
         height: fit-content !important;
         /* margin-left: 0px; */
-        padding-top: 10px;
+        transform: scale(0.9);
+        margin-left: 0px;
     }
     .multicards a {
         text-decoration: none;
         color: #fff;
     }
-    .multicards h2 {
+    .multicards h3 {
         font-size: 25px !important;
     }
     .card .detail-btn a {
@@ -219,7 +231,7 @@ body {
         margin-top: 20px;
     }
     .bottombutton {
-        visibility: visible;
+        display: block !important;
         margin-left: 0px;
     }
 }
@@ -269,6 +281,9 @@ body {
         /* padding-right: 10px; */
         transform: scale(1);
     }
+    .multicards .card {
+        margin: 0px;
+    }
     .inner-cont {
         margin-left: 0px !important;
     }
@@ -292,34 +307,45 @@ body {
         text-decoration: none;
         color: #fff;
     }
-    .multicards h2 {
-        font-size: 25px !important;
+    .multicards .card-title {
+        font-size: 22px !important;
     }
     .card .detail-btn a {
         text-align: center;
     }
 
     .fullpartbtn {
-        display: block !important;
+        /* display: block !important; */
         text-align: center;
         margin-top: 20px;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
     }
     .bottombutton {
-        visibility: visible;
+        display: block !important;
+
         margin-left: 0px;
     }
 }
 
 @media (max-width: 375px) {
     .inner-cont {
-        margin-left: -10px !important;
+        margin-left: 0px !important;
     }
 }
 @media (max-width: 370px) {
     .inner-cont {
-        margin-left: -20px !important;
+        margin-left: 50px !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    .multicards {
+        margin-left: 20px;
+    }
+}
+
+@media (min-width: 2060px) {
+    .multicards {
+        grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     }
 }
 
