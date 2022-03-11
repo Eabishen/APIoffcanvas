@@ -1,0 +1,2057 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+            integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+            crossorigin="anonymous"
+        />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/css/bootstrap-slider.min.css"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/css/bootstrap4-toggle.min.css"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="grid.css" />
+        <link
+            href="https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css"
+            rel="stylesheet"
+        />
+
+        <title>Career API</title>
+        <style>
+            .toggle.ios,
+            .toggle-on.ios,
+            .toggle-off.ios {
+                border-radius: 20rem;
+            }
+            .toggle.ios .toggle-handle {
+                border-radius: 20rem;
+            }
+
+            .card .details-btn a:hover {
+                font-size: 16.5px;
+                transform: translateX(1px);
+            }
+            .bs-canvas-overlay {
+                opacity: 0.75;
+                z-index: 1100;
+            }
+
+            .bs-canvas {
+                top: 0;
+                z-index: 1110;
+                overflow-x: hidden;
+                overflow-y: auto;
+                width: 330px;
+                transition: margin 0.4s ease-out;
+                -webkit-transition: margin 0.4s ease-out;
+                -moz-transition: margin 0.4s ease-out;
+                -ms-transition: margin 0.4s ease-out;
+            }
+
+            .bs-canvas-left {
+                left: 0;
+                margin-left: -400px;
+            }
+
+            .bs-canvas-right {
+                right: 0;
+                margin-right: -330px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="pagemark fixed-bottom">
+            <span>
+                Powered by <span><img src="jobaskitlogo.png" alt="" /></span>
+            </span>
+        </div>
+        <div class="container-fluid filtermain#">
+            <div class="row main-row p-0">
+                <div
+                    class="filter-cont sidebarcont filtersmallscreen"
+                    id="filtercont#"
+                >
+                    <div class="d-flex mt-1 filter-card">
+                        <div class="text-center my-1">
+                            <a
+                                class="pull-bs-canvas-left d-block text-decoration-none"
+                                href="#"
+                                style="
+                                    padding: 5px;
+                                    color: #0e387a;
+                                    border-radius: 5px;
+                                "
+                            >
+                                <span class="ml-1">
+                                    <!-- <span class="mr-1">&#9776;</span>
+                                    <h6 class="pt-2">Filter</h6> -->
+                                    <span
+                                        ><i
+                                            style="font-size: 40px"
+                                            class="bx bx-menu"
+                                        ></i
+                                    ></span>
+                                </span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div
+                        class="bs-canvas bs-canvas-left position-fixed bg-light h-100"
+                    >
+                        <header class="bs-canvas-header py-2 px-1 bg-light">
+                            <!-- <h4 class="d-inline-block text-dark mb-0"></h4> -->
+                            <button
+                                type="button"
+                                class="bs-canvas-close close"
+                                aria-label="Close"
+                            >
+                                <!-- <span aria-hidden="true" class="text-dark"
+                                    >&times;</span
+                                > -->
+                                <i
+                                    style="font-size: 42px; color: #0e387a"
+                                    class="bx bx-x"
+                                ></i>
+                            </button>
+                        </header>
+                        <div class="bs-canvas-content px-3 py-5">
+                            <div class="card mb-5">
+                                <!-- <div class="card-header mx-auto">
+                                    <i
+                                        class="bx bxs-filter-alt"
+                                        style="font-size: 20px"
+                                    ></i
+                                    ><span>Filters</span>
+                                </div> -->
+                                <div class="card-body">
+                                    <!-- input -->
+                                    <div class="card-title text-center p-0 m-0">
+                                        <i
+                                            class="bx bxs-filter-alt"
+                                            style="font-size: 20px"
+                                        ></i
+                                        ><span style="font-size: 22px"
+                                            >Filter</span
+                                        >
+                                    </div>
+                                    <label for="category">Category</label>
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        id="category"
+                                        placeholder="Choose category"
+                                    />
+                                    <label for="Location">Location</label>
+                                    <input
+                                        type="text"
+                                        class="form-control mb-1"
+                                        id="Location"
+                                        placeholder="Choose location"
+                                    />
+
+                                    <!-- Checkbox -->
+                                    <div
+                                        class="form-check d-flex justify-content-between"
+                                        style="margin-left: -20px !important"
+                                    >
+                                        <label
+                                            class="form-check-label"
+                                            for="full"
+                                            >Full time</label
+                                        >
+                                        <input
+                                            type="checkbox"
+                                            data-toggle="toggle"
+                                            data-style="ios"
+                                            data-size="sm"
+                                        />
+                                    </div>
+
+                                    <div
+                                        class="form-check pt-2 d-flex justify-content-between"
+                                        style="margin-left: -20px !important"
+                                    >
+                                        <label
+                                            class="form-check-label"
+                                            for="full"
+                                            >Part time</label
+                                        >
+                                        <input
+                                            type="checkbox"
+                                            data-toggle="toggle"
+                                            data-style="ios"
+                                            data-size="sm"
+                                        />
+                                    </div>
+
+                                    <div
+                                        class="form-check pt-2 d-flex justify-content-between"
+                                        style="margin-left: -20px !important"
+                                    >
+                                        <label
+                                            class="form-check-label mt-1"
+                                            for="intership"
+                                            >hide intership</label
+                                        >
+                                        <input
+                                            type="checkbox"
+                                            data-toggle="toggle"
+                                            data-style="ios"
+                                            data-size="sm"
+                                        />
+                                    </div>
+
+                                    <!-- <div
+                                        class="form-check pt-2 d-flex justify-content-between"
+                                        style="margin-left: -20px !important"
+                                    >
+                                        <label
+                                            class="form-check-label"
+                                            for="part"
+                                            >Fresher Job</label
+                                        >
+                                        <input
+                                            type="checkbox"
+                                            data-toggle="toggle"
+                                            data-style="ios"
+                                            data-size="sm"
+                                        />
+                                    </div> -->
+
+                                    <!-- <label class="pt-4" style="font-size: 14px"
+                                    >Filter by Monthly Salary</label
+                                >
+        
+                                <input
+                                    id="ex2"
+                                    type="text"
+                                    class="span2"
+                                    value=""
+                                    data-slider-min="0"
+                                    data-slider-max="500000"
+                                    data-slider-step="10"
+                                    style="width: 100%"
+                                />
+                                <br />
+                                <span
+                                    class="d-flex justify-content-between"
+                                    style="font-family: sans-serif"
+                                >
+                                    <label for="ex2">₹ 10</label>
+                                    <label for="ex2">₹ 500000</label>
+                                </span> -->
+
+                                    <label
+                                        class="pt-1"
+                                        style="
+                                            font-size: 14px;
+                                            font-family: sans-serif;
+                                        "
+                                        >Filter by Monthly Salary(in ₹)</label
+                                    >
+
+                                    <input
+                                        id="ex13"
+                                        type="text"
+                                        data-slider-ticks="[0, 10, 20, 30, 40]"
+                                        data-slider-ticks-snap-bounds="30"
+                                        data-slider-ticks-labels='["0", "10k", "20k", "30k", "50k"]'
+                                        style="width: 95%"
+                                    />
+                                    <div></div>
+                                    <p style="margin: 2px 0">
+                                        Search by Company
+                                    </p>
+                                    <div class="input-group mb-2 mt-0 p-0">
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            placeholder="eg: Google,Chennai, etc.,"
+                                            aria-describedby="basic-addon1"
+                                            style="font-size: 14px"
+                                        />
+                                        <div class="input-group-prepend">
+                                            <button
+                                                type="button"
+                                                class="btn btn-block-primary py-0"
+                                                style="
+                                                    background-color: #0e387a;
+                                                    color: #fff;
+                                                "
+                                            >
+                                                <i
+                                                    class="bx bx-search-alt-2 bx-rotate-90"
+                                                    style="font-size: 20px"
+                                                ></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <!--                             <label class="pt-3" for="Searchcompany">Search by Company</label>
+                                <input
+                                    type="number"
+                                    class="form-control mb-2"
+                                    id="Searchcompany"
+                                    placeholder="Choose duration"
+                                /> -->
+
+                                    <center class="mt-3">
+                                        <button
+                                            type="button"
+                                            class="btn btn-block btn-filter pt-2"
+                                        >
+                                            Apply
+                                        </button>
+                                    </center>
+                                    <!-- <center class="py-2">
+                                        <button
+                                            type="button"
+                                            class="btn btn-block btn-filter pt-2"
+                                        >
+                                            Clear All
+                                        </button>
+                                    </center> -->
+                                    <!-- <hr />
+                                <p style="font-size: 14px">or</p>
+                                <center><p>Search by Company</p></center>
+                                <div class="input-group mb-3 pb-4">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="eg: Google,Chennai, etc.,"
+                                        aria-describedby="basic-addon1"
+                                        style="font-size: 14px"
+                                    />
+                                    <div class="input-group-prepend">
+                                        <button
+                                            type="button"
+                                            class="btn btn-block-primary py-0"
+                                            style="
+                                                background-color: #0e387a;
+                                                color: #fff;
+                                            "
+                                        >
+                                            <i
+                                                class="bx bx-search-alt-2 bx-rotate-90"
+                                                style="font-size: 20px"
+                                            ></i>
+                                        </button>
+                                    </div>
+                                </div> -->
+                                </div>
+                                <!-- <div class="card-body">
+                                <h5 class="card-title">Special title treatment</h5>
+                                <p class="card-text">
+                                    With supporting text below as a natural lead-in to
+                                    additional content.
+                                </p>
+                                <a href="#" class="btn btn-danger">Go somewhere</a>
+                            </div> -->
+                            </div>
+                            <!-- <form>
+                            <div class="form-group">
+                                <label for="exampleFormControlInput1"
+                                    >Email address</label
+                                >
+                                <input
+                                    type="email"
+                                    class="form-control"
+                                    id="exampleFormControlInput1"
+                                    placeholder="name@example.com"
+                                />
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect1"
+                                    >Example select</label
+                                >
+                                <select
+                                    class="form-control"
+                                    id="exampleFormControlSelect1"
+                                >
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlSelect2"
+                                    >Example multiple select</label
+                                >
+                                <select
+                                    multiple
+                                    class="form-control"
+                                    id="exampleFormControlSelect2"
+                                >
+                                    <option>1</option>
+                                    <option>2</option>
+                                    <option>3</option>
+                                    <option>4</option>
+                                    <option>5</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleFormControlTextarea1"
+                                    >Example textarea</label
+                                >
+                                <textarea
+                                    class="form-control"
+                                    id="exampleFormControlTextarea1"
+                                    rows="3"
+                                ></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="formControlRange"
+                                    >Example Range input</label
+                                >
+                                <input
+                                    type="range"
+                                    class="form-control-range"
+                                    id="formControlRange"
+                                />
+                            </div>
+                            <p class="text-center mb-0">
+                                <button type="submit" class="btn btn-primary">
+                                    Submit
+                                </button>
+                            </p>
+                        </form> -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cards -->
+                <div class="col-lg-11 multicards">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title mt-2">PHP Developer</h5>
+
+                            <p
+                                class="card-subtitle mb-2 text-muted"
+                                style="
+                                    font-size: 12px;
+                                    color: rgb(39, 39, 39);
+                                    font-weight: 600;
+                                    padding-bottom: 5px;
+                                    border-bottom: 1.5px solid
+                                        rgb(192, 192, 192);
+                                "
+                            >
+                                <i class="bx bxs-home"></i>Work from home
+                            </p>
+                            <div
+                                style="
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: stretch;
+                                "
+                            >
+                                <div
+                                    class="info"
+                                    style="
+                                        display: grid;
+                                        grid-template-columns: 1fr 1fr;
+                                        align-items: center;
+                                        justify-content: center;
+                                        text-align: center;
+                                    "
+                                >
+                                    <div class="informationdetails">
+                                        <div
+                                            class="text-secondary d-flex flex-column"
+                                        >
+                                            <p style="font-size: 14px">
+                                                <span
+                                                    style="
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                        color: rgb(49, 49, 49);
+                                                    "
+                                                >
+                                                    <i
+                                                        class="bx bx-play-circle"
+                                                        style="font-size: 16px"
+                                                    ></i
+                                                    ><span
+                                                        style="
+                                                            text-transform: uppercase;
+                                                        "
+                                                        >Start Date</span
+                                                    >
+                                                </span>
+                                                <span class="mx-1"
+                                                    >Immediately</span
+                                                >
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="informationdetails">
+                                        <div
+                                            class="text-secondary d-flex flex-column"
+                                        >
+                                            <p style="font-size: 14px">
+                                                <span
+                                                    style="
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                        color: rgb(49, 49, 49);
+                                                    "
+                                                >
+                                                    <i
+                                                        class="bx bx-stopwatch"
+                                                        style="font-size: 16px"
+                                                    ></i
+                                                    ><span
+                                                        style="
+                                                            text-transform: uppercase;
+                                                        "
+                                                        >Duration</span
+                                                    >
+                                                </span>
+                                                <span class="mx-1"
+                                                    >12 months</span
+                                                >
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="informationdetails">
+                                        <div
+                                            class="text-secondary d-flex flex-column"
+                                        >
+                                            <p style="font-size: 14px">
+                                                <span
+                                                    style="
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                        color: rgb(49, 49, 49);
+                                                    "
+                                                >
+                                                    <i
+                                                        class="bx bx-money"
+                                                        style="font-size: 16px"
+                                                    ></i
+                                                    ><span
+                                                        style="
+                                                            text-transform: uppercase;
+                                                        "
+                                                        >Salary</span
+                                                    >
+                                                </span>
+                                                <span class="mx-1"
+                                                    >600000/month</span
+                                                >
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="informationdetails">
+                                        <div
+                                            class="text-secondary d-flex flex-column"
+                                        >
+                                            <p style="font-size: 14px">
+                                                <span
+                                                    style="
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                        color: rgb(49, 49, 49);
+                                                    "
+                                                >
+                                                    <i
+                                                        class="bx bx-hourglass"
+                                                        style="font-size: 16px"
+                                                    ></i
+                                                    ><span
+                                                        style="
+                                                            text-transform: uppercase;
+                                                        "
+                                                        >Apply Within</span
+                                                    >
+                                                </span>
+                                                <span class="mx-1"
+                                                    >4 weeks</span
+                                                >
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tags">
+                                    <div>
+                                        <p class="d-inline-block fullpartbtn">
+                                            Part-time
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p class="d-inline-block fullpartbtn">
+                                            Flexible work hours
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p class="d-inline-block fullpartbtn">
+                                            Letter of recommendation
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p class="d-inline-block fullpartbtn">
+                                            Life insurance
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="applydetails">
+                                    <div>
+                                        <button
+                                            type="button"
+                                            class="btn btn-filter"
+                                        >
+                                            Apply now
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <a
+                                            class="ml-auto"
+                                            style="color: #0e387a !important"
+                                            href=""
+                                            >View Details ▶</a
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title mt-2">Java Developer</h5>
+
+                            <p
+                                class="card-subtitle mb-2 text-muted"
+                                style="
+                                    font-size: 12px;
+                                    color: rgb(39, 39, 39);
+                                    font-weight: 600;
+                                    padding-bottom: 5px;
+                                    border-bottom: 1.5px solid
+                                        rgb(192, 192, 192);
+                                "
+                            >
+                                <i class="bx bxs-home"></i>In Office
+                            </p>
+                            <div
+                                style="
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: flex-center;
+                                    justify-content: space-between;
+                                "
+                            >
+                                <div
+                                    class="info"
+                                    style="
+                                        display: grid;
+                                        grid-template-columns: 1fr 1fr;
+                                        align-items: center;
+                                        justify-content: center;
+                                        text-align: center;
+                                    "
+                                >
+                                    <div class="informationdetails">
+                                        <div
+                                            class="text-secondary d-flex flex-column"
+                                        >
+                                            <p style="font-size: 14px">
+                                                <span
+                                                    style="
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                        color: rgb(49, 49, 49);
+                                                    "
+                                                >
+                                                    <i
+                                                        class="bx bx-play-circle"
+                                                        style="font-size: 16px"
+                                                    ></i
+                                                    ><span
+                                                        style="
+                                                            text-transform: uppercase;
+                                                        "
+                                                        >Start Date</span
+                                                    >
+                                                </span>
+                                                <span class="mx-1"
+                                                    >Immediately</span
+                                                >
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="informationdetails">
+                                        <div
+                                            class="text-secondary d-flex flex-column"
+                                        >
+                                            <p style="font-size: 14px">
+                                                <span
+                                                    style="
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                        color: rgb(49, 49, 49);
+                                                    "
+                                                >
+                                                    <i
+                                                        class="bx bx-stopwatch"
+                                                        style="font-size: 16px"
+                                                    ></i
+                                                    ><span
+                                                        style="
+                                                            text-transform: uppercase;
+                                                        "
+                                                        >Duration</span
+                                                    >
+                                                </span>
+                                                <span class="mx-1"
+                                                    >6 months</span
+                                                >
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="informationdetails">
+                                        <div
+                                            class="text-secondary d-flex flex-column"
+                                        >
+                                            <p style="font-size: 14px">
+                                                <span
+                                                    style="
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                        color: rgb(49, 49, 49);
+                                                    "
+                                                >
+                                                    <i
+                                                        class="bx bx-money"
+                                                        style="font-size: 16px"
+                                                    ></i
+                                                    ><span
+                                                        style="
+                                                            text-transform: uppercase;
+                                                        "
+                                                        >Salary</span
+                                                    >
+                                                </span>
+                                                <span class="mx-1"
+                                                    >50000/month</span
+                                                >
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="informationdetails">
+                                        <div
+                                            class="text-secondary d-flex flex-column"
+                                        >
+                                            <p style="font-size: 14px">
+                                                <span
+                                                    style="
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                        color: rgb(49, 49, 49);
+                                                    "
+                                                >
+                                                    <i
+                                                        class="bx bx-hourglass"
+                                                        style="font-size: 16px"
+                                                    ></i
+                                                    ><span
+                                                        style="
+                                                            text-transform: uppercase;
+                                                        "
+                                                        >Apply Within</span
+                                                    >
+                                                </span>
+                                                <span class="mx-1"
+                                                    >1 weeks</span
+                                                >
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tags">
+                                    <div>
+                                        <p class="d-inline-block fullpartbtn">
+                                            Part-time
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p class="d-inline-block fullpartbtn">
+                                            Letter of recommendation
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p class="d-inline-block fullpartbtn">
+                                            Flexible work hours
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <p class="d-inline-block fullpartbtn">
+                                            Life insurance
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="applydetails">
+                                    <div>
+                                        <button
+                                            type="button"
+                                            class="btn btn-filter"
+                                        >
+                                            Apply now
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <a
+                                            class=""
+                                            style="color: #0e387a !important"
+                                            href=""
+                                            >View Details ▶</a
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title mt-2">Angular Developer</h5>
+
+                            <p
+                                class="card-subtitle mb-2 text-muted"
+                                style="
+                                    font-size: 12px;
+                                    color: rgb(39, 39, 39);
+                                    font-weight: 600;
+                                    padding-bottom: 5px;
+                                    border-bottom: 1.5px solid
+                                        rgb(192, 192, 192);
+                                "
+                            >
+                                <i class="bx bxs-home"></i>Work from Home
+                            </p>
+                            <div
+                                style="
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: flex-center;
+                                    justify-content: space-between;
+                                "
+                            >
+                                <div
+                                    class="info"
+                                    style="
+                                        display: grid;
+                                        grid-template-columns: 1fr 1fr;
+                                        align-items: center;
+                                        justify-content: center;
+                                        text-align: center;
+                                    "
+                                >
+                                    <div class="informationdetails">
+                                        <div
+                                            class="text-secondary d-flex flex-column"
+                                        >
+                                            <p style="font-size: 14px">
+                                                <span
+                                                    style="
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                        color: rgb(49, 49, 49);
+                                                    "
+                                                >
+                                                    <i
+                                                        class="bx bx-play-circle"
+                                                        style="font-size: 16px"
+                                                    ></i
+                                                    ><span
+                                                        style="
+                                                            text-transform: uppercase;
+                                                        "
+                                                        >Start Date</span
+                                                    >
+                                                </span>
+                                                <span class="mx-1"
+                                                    >Immediately</span
+                                                >
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="informationdetails">
+                                        <div
+                                            class="text-secondary d-flex flex-column"
+                                        >
+                                            <p style="font-size: 14px">
+                                                <span
+                                                    style="
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                        color: rgb(49, 49, 49);
+                                                    "
+                                                >
+                                                    <i
+                                                        class="bx bx-stopwatch"
+                                                        style="font-size: 16px"
+                                                    ></i
+                                                    ><span
+                                                        style="
+                                                            text-transform: uppercase;
+                                                        "
+                                                        >Duration</span
+                                                    >
+                                                </span>
+                                                <span class="mx-1"
+                                                    >8 months</span
+                                                >
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="informationdetails">
+                                        <div
+                                            class="text-secondary d-flex flex-column"
+                                        >
+                                            <p style="font-size: 14px">
+                                                <span
+                                                    style="
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                        color: rgb(49, 49, 49);
+                                                    "
+                                                >
+                                                    <i
+                                                        class="bx bx-money"
+                                                        style="font-size: 16px"
+                                                    ></i
+                                                    ><span
+                                                        style="
+                                                            text-transform: uppercase;
+                                                        "
+                                                        >Salary</span
+                                                    >
+                                                </span>
+                                                <span class="mx-1"
+                                                    >40000/month</span
+                                                >
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="informationdetails">
+                                        <div
+                                            class="text-secondary d-flex flex-column"
+                                        >
+                                            <p style="font-size: 14px">
+                                                <span
+                                                    style="
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                        color: rgb(49, 49, 49);
+                                                    "
+                                                >
+                                                    <i
+                                                        class="bx bx-hourglass"
+                                                        style="font-size: 16px"
+                                                    ></i
+                                                    ><span
+                                                        style="
+                                                            text-transform: uppercase;
+                                                        "
+                                                        >Apply Within</span
+                                                    >
+                                                </span>
+                                                <span class="mx-1"
+                                                    >2 weeks</span
+                                                >
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tags">
+                                    <div>
+                                        <p class="d-inline-block fullpartbtn">
+                                            Part-time
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p class="d-inline-block fullpartbtn">
+                                            Flexible work hours
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p class="d-inline-block fullpartbtn">
+                                            Life insurance
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <p class="d-inline-block fullpartbtn">
+                                            Letter of recommendation
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="applydetails">
+                                    <div>
+                                        <button
+                                            type="button"
+                                            class="btn btn-filter"
+                                        >
+                                            Apply now
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <a
+                                            class=""
+                                            style="color: #0e387a !important"
+                                            href=""
+                                            >View Details ▶</a
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title mt-2">Laravel Developer</h5>
+
+                            <p
+                                class="card-subtitle mb-2 text-muted"
+                                style="
+                                    font-size: 12px;
+                                    color: rgb(39, 39, 39);
+                                    font-weight: 600;
+                                    padding-bottom: 5px;
+                                    border-bottom: 1.5px solid
+                                        rgb(192, 192, 192);
+                                "
+                            >
+                                <i class="bx bxs-home"></i>In Office
+                            </p>
+                            <div
+                                style="
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: flex-center;
+                                    justify-content: space-between;
+                                "
+                            >
+                                <div
+                                    class="info"
+                                    style="
+                                        display: grid;
+                                        grid-template-columns: 1fr 1fr;
+                                        align-items: center;
+                                        justify-content: center;
+                                        text-align: center;
+                                    "
+                                >
+                                    <div class="informationdetails">
+                                        <div
+                                            class="text-secondary d-flex flex-column"
+                                        >
+                                            <p style="font-size: 14px">
+                                                <span
+                                                    style="
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                        color: rgb(49, 49, 49);
+                                                    "
+                                                >
+                                                    <i
+                                                        class="bx bx-play-circle"
+                                                        style="font-size: 16px"
+                                                    ></i
+                                                    ><span
+                                                        style="
+                                                            text-transform: uppercase;
+                                                        "
+                                                        >Start Date</span
+                                                    >
+                                                </span>
+                                                <span class="mx-1"
+                                                    >Immediately</span
+                                                >
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="informationdetails">
+                                        <div
+                                            class="text-secondary d-flex flex-column"
+                                        >
+                                            <p style="font-size: 14px">
+                                                <span
+                                                    style="
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                        color: rgb(49, 49, 49);
+                                                    "
+                                                >
+                                                    <i
+                                                        class="bx bx-stopwatch"
+                                                        style="font-size: 16px"
+                                                    ></i
+                                                    ><span
+                                                        style="
+                                                            text-transform: uppercase;
+                                                        "
+                                                        >Duration</span
+                                                    >
+                                                </span>
+                                                <span class="mx-1"
+                                                    >3 months</span
+                                                >
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="informationdetails">
+                                        <div
+                                            class="text-secondary d-flex flex-column"
+                                        >
+                                            <p style="font-size: 14px">
+                                                <span
+                                                    style="
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                        color: rgb(49, 49, 49);
+                                                    "
+                                                >
+                                                    <i
+                                                        class="bx bx-money"
+                                                        style="font-size: 16px"
+                                                    ></i
+                                                    ><span
+                                                        style="
+                                                            text-transform: uppercase;
+                                                        "
+                                                        >Salary</span
+                                                    >
+                                                </span>
+                                                <span class="mx-1"
+                                                    >55000/month</span
+                                                >
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="informationdetails">
+                                        <div
+                                            class="text-secondary d-flex flex-column"
+                                        >
+                                            <p style="font-size: 14px">
+                                                <span
+                                                    style="
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                        color: rgb(49, 49, 49);
+                                                    "
+                                                >
+                                                    <i
+                                                        class="bx bx-hourglass"
+                                                        style="font-size: 16px"
+                                                    ></i
+                                                    ><span
+                                                        style="
+                                                            text-transform: uppercase;
+                                                        "
+                                                        >Apply Within</span
+                                                    >
+                                                </span>
+                                                <span class="mx-1"
+                                                    >3 weeks</span
+                                                >
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tags">
+                                    <div>
+                                        <p class="d-inline-block fullpartbtn">
+                                            Letter of recommendation
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p class="d-inline-block fullpartbtn">
+                                            Flexible work hours
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p class="d-inline-block fullpartbtn">
+                                            Life insurance
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <p class="d-inline-block fullpartbtn">
+                                            Certificate
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="applydetails">
+                                    <div>
+                                        <button
+                                            type="button"
+                                            class="btn btn-filter"
+                                        >
+                                            Apply now
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <a
+                                            class=""
+                                            style="color: #0e387a !important"
+                                            href=""
+                                            >View Details ▶</a
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title mt-2">
+                                Javascript Developer
+                            </h5>
+
+                            <p
+                                class="card-subtitle mb-2 text-muted"
+                                style="
+                                    font-size: 12px;
+                                    color: rgb(39, 39, 39);
+                                    font-weight: 600;
+                                    padding-bottom: 5px;
+                                    border-bottom: 1.5px solid
+                                        rgb(192, 192, 192);
+                                "
+                            >
+                                <i class="bx bxs-home"></i>In Office
+                            </p>
+                            <div
+                                style="
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: flex-center;
+                                    justify-content: space-between;
+                                "
+                            >
+                                <div
+                                    class="info"
+                                    style="
+                                        display: grid;
+                                        grid-template-columns: 1fr 1fr;
+                                        align-items: center;
+                                        justify-content: center;
+                                        text-align: center;
+                                    "
+                                >
+                                    <div class="informationdetails">
+                                        <div
+                                            class="text-secondary d-flex flex-column"
+                                        >
+                                            <p style="font-size: 14px">
+                                                <span
+                                                    style="
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                        color: rgb(49, 49, 49);
+                                                    "
+                                                >
+                                                    <i
+                                                        class="bx bx-play-circle"
+                                                        style="font-size: 16px"
+                                                    ></i
+                                                    ><span
+                                                        style="
+                                                            text-transform: uppercase;
+                                                        "
+                                                        >Start Date</span
+                                                    >
+                                                </span>
+                                                <span class="mx-1"
+                                                    >Immediately</span
+                                                >
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="informationdetails">
+                                        <div
+                                            class="text-secondary d-flex flex-column"
+                                        >
+                                            <p style="font-size: 14px">
+                                                <span
+                                                    style="
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                        color: rgb(49, 49, 49);
+                                                    "
+                                                >
+                                                    <i
+                                                        class="bx bx-stopwatch"
+                                                        style="font-size: 16px"
+                                                    ></i
+                                                    ><span
+                                                        style="
+                                                            text-transform: uppercase;
+                                                        "
+                                                        >Duration</span
+                                                    >
+                                                </span>
+                                                <span class="mx-1"
+                                                    >8 months</span
+                                                >
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="informationdetails">
+                                        <div
+                                            class="text-secondary d-flex flex-column"
+                                        >
+                                            <p style="font-size: 14px">
+                                                <span
+                                                    style="
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                        color: rgb(49, 49, 49);
+                                                    "
+                                                >
+                                                    <i
+                                                        class="bx bx-money"
+                                                        style="font-size: 16px"
+                                                    ></i
+                                                    ><span
+                                                        style="
+                                                            text-transform: uppercase;
+                                                        "
+                                                        >Salary</span
+                                                    >
+                                                </span>
+                                                <span class="mx-1"
+                                                    >30000/month</span
+                                                >
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="informationdetails">
+                                        <div
+                                            class="text-secondary d-flex flex-column"
+                                        >
+                                            <p style="font-size: 14px">
+                                                <span
+                                                    style="
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                        color: rgb(49, 49, 49);
+                                                    "
+                                                >
+                                                    <i
+                                                        class="bx bx-hourglass"
+                                                        style="font-size: 16px"
+                                                    ></i
+                                                    ><span
+                                                        style="
+                                                            text-transform: uppercase;
+                                                        "
+                                                        >Apply Within</span
+                                                    >
+                                                </span>
+                                                <span class="mx-1"
+                                                    >1 weeks</span
+                                                >
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tags">
+                                    <div>
+                                        <p class="d-inline-block fullpartbtn">
+                                            Part-time
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p class="d-inline-block fullpartbtn">
+                                            Pre-Placement offer
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p class="d-inline-block fullpartbtn">
+                                            Life insurance
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <p class="d-inline-block fullpartbtn">
+                                            Letter of recommendation
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="applydetails">
+                                    <div>
+                                        <button
+                                            type="button"
+                                            class="btn btn-filter"
+                                        >
+                                            Apply now
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <a
+                                            class=""
+                                            style="color: #0e387a !important"
+                                            href=""
+                                            >View Details ▶</a
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title mt-2">UX/UI Developer</h5>
+
+                            <p
+                                class="card-subtitle mb-2 text-muted"
+                                style="
+                                    font-size: 12px;
+                                    color: rgb(39, 39, 39);
+                                    font-weight: 600;
+                                    padding-bottom: 5px;
+                                    border-bottom: 1.5px solid
+                                        rgb(192, 192, 192);
+                                "
+                            >
+                                <i class="bx bxs-home"></i>In Office
+                            </p>
+                            <div
+                                style="
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: flex-center;
+                                    justify-content: space-between;
+                                "
+                            >
+                                <div
+                                    class="info"
+                                    style="
+                                        display: grid;
+                                        grid-template-columns: 1fr 1fr;
+                                        align-items: center;
+                                        justify-content: center;
+                                        text-align: center;
+                                    "
+                                >
+                                    <div class="informationdetails">
+                                        <div
+                                            class="text-secondary d-flex flex-column"
+                                        >
+                                            <p style="font-size: 14px">
+                                                <span
+                                                    style="
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                        color: rgb(49, 49, 49);
+                                                    "
+                                                >
+                                                    <i
+                                                        class="bx bx-play-circle"
+                                                        style="font-size: 16px"
+                                                    ></i
+                                                    ><span
+                                                        style="
+                                                            text-transform: uppercase;
+                                                        "
+                                                        >Start Date</span
+                                                    >
+                                                </span>
+                                                <span class="mx-1"
+                                                    >Immediately</span
+                                                >
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="informationdetails">
+                                        <div
+                                            class="text-secondary d-flex flex-column"
+                                        >
+                                            <p style="font-size: 14px">
+                                                <span
+                                                    style="
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                        color: rgb(49, 49, 49);
+                                                    "
+                                                >
+                                                    <i
+                                                        class="bx bx-stopwatch"
+                                                        style="font-size: 16px"
+                                                    ></i
+                                                    ><span
+                                                        style="
+                                                            text-transform: uppercase;
+                                                        "
+                                                        >Duration</span
+                                                    >
+                                                </span>
+                                                <span class="mx-1">1 Year</span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="informationdetails">
+                                        <div
+                                            class="text-secondary d-flex flex-column"
+                                        >
+                                            <p style="font-size: 14px">
+                                                <span
+                                                    style="
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                        color: rgb(49, 49, 49);
+                                                    "
+                                                >
+                                                    <i
+                                                        class="bx bx-money"
+                                                        style="font-size: 16px"
+                                                    ></i
+                                                    ><span
+                                                        style="
+                                                            text-transform: uppercase;
+                                                        "
+                                                        >Salary</span
+                                                    >
+                                                </span>
+                                                <span class="mx-1"
+                                                    >35000/month</span
+                                                >
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="informationdetails">
+                                        <div
+                                            class="text-secondary d-flex flex-column"
+                                        >
+                                            <p style="font-size: 14px">
+                                                <span
+                                                    style="
+                                                        display: flex;
+                                                        align-items: center;
+                                                        justify-content: center;
+                                                        color: rgb(49, 49, 49);
+                                                    "
+                                                >
+                                                    <i
+                                                        class="bx bx-hourglass"
+                                                        style="font-size: 16px"
+                                                    ></i
+                                                    ><span
+                                                        style="
+                                                            text-transform: uppercase;
+                                                        "
+                                                        >Apply Within</span
+                                                    >
+                                                </span>
+                                                <span class="mx-1"
+                                                    >2 weeks</span
+                                                >
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tags">
+                                    <div>
+                                        <p class="d-inline-block fullpartbtn">
+                                            Part-time
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p class="d-inline-block fullpartbtn">
+                                            Flexible work hours
+                                        </p>
+                                    </div>
+                                    <div>
+                                        <p class="d-inline-block fullpartbtn">
+                                            Pre-Placement offer
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <p class="d-inline-block fullpartbtn">
+                                            Letter of recommendation
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="applydetails">
+                                    <div>
+                                        <button
+                                            type="button"
+                                            class="btn btn-filter"
+                                        >
+                                            Apply now
+                                        </button>
+                                    </div>
+                                    <div>
+                                        <a
+                                            class=""
+                                            style="color: #0e387a !important"
+                                            href=""
+                                            >View Details ▶</a
+                                        >
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- popup -->
+            <div class="col-md-4 col-lg-1 filter-cont hidden" id="filtercont#">
+                <!-- <div class="d-flex mt-1 filter-card">
+                    <div class="text-center p-1 my-5">
+                        <a
+                            class="pull-bs-canvas-left d-block text-decoration-none"
+                            href="#"
+                            style="
+                                padding: 5px 10px;
+                                background-color: #0e387a;
+                                color: white;
+                                border-radius: 5px;
+                            "
+                        >
+                            <span class="d-flex align-items-center">
+                                <span class="mr-1">&#9776;</span>
+                                <h6 class="pt-2">Filter</h6>
+                            </span>
+                        </a>
+                    </div>
+                </div> -->
+
+                <div
+                    class="bs-canvas bs-canvas-left position-fixed bg-light h-100"
+                >
+                    <header class="bs-canvas-header py-2 px-3 bg-light">
+                        <!-- <h4 class="d-inline-block text-dark mb-0"></h4> -->
+                        <button
+                            type="button"
+                            class="bs-canvas-close close"
+                            aria-label="Close"
+                        >
+                            <span aria-hidden="true" class="text-dark"
+                                >&times;</span
+                            >
+                        </button>
+                    </header>
+                    <div class="bs-canvas-content px-3 py-5">
+                        <div class="card mb-5">
+                            <!-- <div class="card-header mx-auto">
+                                <i
+                                    class="bx bxs-filter-alt"
+                                    style="font-size: 20px"
+                                ></i
+                                ><span>Filters</span>
+                            </div> -->
+                            <div class="card-body">
+                                <!-- input -->
+                                <div class="card-title text-center p-0 m-0">
+                                    <i
+                                        class="bx bxs-filter-alt"
+                                        style="font-size: 20px"
+                                    ></i
+                                    ><span style="font-size: 22px">Filter</span>
+                                </div>
+                                <label for="category">Category</label>
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="category"
+                                    placeholder="Choose category"
+                                />
+                                <label for="Location">Location</label>
+                                <input
+                                    type="text"
+                                    class="form-control mb-1"
+                                    id="Location"
+                                    placeholder="Choose location"
+                                />
+
+                                <!-- Checkbox -->
+                                <div
+                                    class="form-check d-flex justify-content-between"
+                                    style="margin-left: -20px !important"
+                                >
+                                    <label class="form-check-label" for="full"
+                                        >Full time</label
+                                    >
+                                    <input
+                                        type="checkbox"
+                                        data-toggle="toggle"
+                                        data-style="ios"
+                                        data-size="sm"
+                                    />
+                                </div>
+
+                                <div
+                                    class="form-check pt-2 d-flex justify-content-between"
+                                    style="margin-left: -20px !important"
+                                >
+                                    <label class="form-check-label" for="full"
+                                        >Part time</label
+                                    >
+                                    <input
+                                        type="checkbox"
+                                        data-toggle="toggle"
+                                        data-style="ios"
+                                        data-size="sm"
+                                    />
+                                </div>
+
+                                <div
+                                    class="form-check pt-2 d-flex justify-content-between"
+                                    style="margin-left: -20px !important"
+                                >
+                                    <label
+                                        class="form-check-label mt-1"
+                                        for="intership"
+                                        >Also include intership</label
+                                    >
+                                    <input
+                                        type="checkbox"
+                                        data-toggle="toggle"
+                                        data-style="ios"
+                                        data-size="sm"
+                                    />
+                                </div>
+
+                                <div
+                                    class="form-check pt-2 d-flex justify-content-between"
+                                    style="margin-left: -20px !important"
+                                >
+                                    <label class="form-check-label" for="part"
+                                        >Fresher Job</label
+                                    >
+                                    <input
+                                        type="checkbox"
+                                        data-toggle="toggle"
+                                        data-style="ios"
+                                        data-size="sm"
+                                    />
+                                </div>
+
+                                <!-- <label class="pt-4" style="font-size: 14px"
+                                >Filter by Monthly Salary</label
+                            >
+    
+                            <input
+                                id="ex2"
+                                type="text"
+                                class="span2"
+                                value=""
+                                data-slider-min="0"
+                                data-slider-max="500000"
+                                data-slider-step="10"
+                                style="width: 100%"
+                            />
+                            <br />
+                            <span
+                                class="d-flex justify-content-between"
+                                style="font-family: sans-serif"
+                            >
+                                <label for="ex2">₹ 10</label>
+                                <label for="ex2">₹ 500000</label>
+                            </span> -->
+
+                                <label
+                                    class="pt-1"
+                                    style="
+                                        font-size: 14px;
+                                        font-family: sans-serif;
+                                    "
+                                    >Filter by Monthly Salary(in ₹)</label
+                                >
+
+                                <input
+                                    id="ex13"
+                                    type="text"
+                                    data-slider-ticks="[0, 10, 20, 30, 40]"
+                                    data-slider-ticks-snap-bounds="30"
+                                    data-slider-ticks-labels='["0", "10k", "20k", "30k", "50k"]'
+                                    style="width: 95%"
+                                />
+                                <div></div>
+                                <p style="margin: 2px 0">Search by Company</p>
+                                <div class="input-group mb-2 mt-0 p-0">
+                                    <input
+                                        type="text"
+                                        class="form-control"
+                                        placeholder="eg: Google,Chennai, etc.,"
+                                        aria-describedby="basic-addon1"
+                                        style="font-size: 14px"
+                                    />
+                                    <div class="input-group-prepend">
+                                        <button
+                                            type="button"
+                                            class="btn btn-block-primary py-0"
+                                            style="
+                                                background-color: #0e387a;
+                                                color: #fff;
+                                            "
+                                        >
+                                            <i
+                                                class="bx bx-search-alt-2 bx-rotate-90"
+                                                style="font-size: 20px"
+                                            ></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                <!--                             <label class="pt-3" for="Searchcompany">Search by Company</label>
+                            <input
+                                type="number"
+                                class="form-control mb-2"
+                                id="Searchcompany"
+                                placeholder="Choose duration"
+                            /> -->
+
+                                <center class="">
+                                    <button
+                                        type="button"
+                                        class="btn btn-block btn-filter pt-2"
+                                    >
+                                        Apply
+                                    </button>
+                                </center>
+                                <center class="py-2">
+                                    <button
+                                        type="button"
+                                        class="btn btn-block btn-filter pt-2"
+                                    >
+                                        Clear All
+                                    </button>
+                                </center>
+                                <!-- <hr />
+                            <p style="font-size: 14px">or</p>
+                            <center><p>Search by Company</p></center>
+                            <div class="input-group mb-3 pb-4">
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    placeholder="eg: Google,Chennai, etc.,"
+                                    aria-describedby="basic-addon1"
+                                    style="font-size: 14px"
+                                />
+                                <div class="input-group-prepend">
+                                    <button
+                                        type="button"
+                                        class="btn btn-block-primary py-0"
+                                        style="
+                                            background-color: #0e387a;
+                                            color: #fff;
+                                        "
+                                    >
+                                        <i
+                                            class="bx bx-search-alt-2 bx-rotate-90"
+                                            style="font-size: 20px"
+                                        ></i>
+                                    </button>
+                                </div>
+                            </div> -->
+                            </div>
+                            <!-- <div class="card-body">
+                            <h5 class="card-title">Special title treatment</h5>
+                            <p class="card-text">
+                                With supporting text below as a natural lead-in to
+                                additional content.
+                            </p>
+                            <a href="#" class="btn btn-danger">Go somewhere</a>
+                        </div> -->
+                        </div>
+                        <!-- <form>
+                        <div class="form-group">
+                            <label for="exampleFormControlInput1"
+                                >Email address</label
+                            >
+                            <input
+                                type="email"
+                                class="form-control"
+                                id="exampleFormControlInput1"
+                                placeholder="name@example.com"
+                            />
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect1"
+                                >Example select</label
+                            >
+                            <select
+                                class="form-control"
+                                id="exampleFormControlSelect1"
+                            >
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlSelect2"
+                                >Example multiple select</label
+                            >
+                            <select
+                                multiple
+                                class="form-control"
+                                id="exampleFormControlSelect2"
+                            >
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleFormControlTextarea1"
+                                >Example textarea</label
+                            >
+                            <textarea
+                                class="form-control"
+                                id="exampleFormControlTextarea1"
+                                rows="3"
+                            ></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="formControlRange"
+                                >Example Range input</label
+                            >
+                            <input
+                                type="range"
+                                class="form-control-range"
+                                id="formControlRange"
+                            />
+                        </div>
+                        <p class="text-center mb-0">
+                            <button type="submit" class="btn btn-primary">
+                                Submit
+                            </button>
+                        </p>
+                    </form> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <button
+            type="button"
+            class="bottombutton btn btn-dark btn-lg btn-block pull-bs-canvas-left d-block text-decoration-none"
+            id="bottom-btn"
+        >
+            Filter
+        </button>
+
+        <!-- <script>
+            let bottombtn = document.getElementById("bottom-btn");
+            let filtermenu = document.getElementById("popfilterid");
+
+            function showfilter() {
+                addEventListener("click", function () {
+                    filtermenu.classList.remove("hidden");
+                });
+            }
+
+            function closeFilter() {
+                addEventListener("click", function () {
+                    filtermenu.classList.add("hidden");
+                });
+            }
+        </script> -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/11.0.2/bootstrap-slider.js"></script>
+
+        <script>
+            // var slider = new Slider("#ex2", {});
+        </script>
+
+        <script>
+            var slider = new Slider("#ex13", {
+                ticks: [0, 10, 20, 30, 40],
+                ticks_labels: ["0", "10k", "20k", "30k", "40k"],
+                ticks_snap_bounds: 10,
+            });
+            // var slider2 = new Slider("#ex15", {
+            //     min: 5000,
+            //     max: 50000,
+            //     scale: "logarithmic",
+            //     step: 10,
+            // });
+        </script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+            crossorigin="anonymous"
+        ></script>
+        <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+        <script>
+            jQuery(document).ready(function ($) {
+                $(document).on(
+                    "click",
+                    ".pull-bs-canvas-right, .pull-bs-canvas-left",
+                    function () {
+                        $("body").prepend(
+                            '<div class="bs-canvas-overlay bg-dark position-fixed w-100 h-100"></div>'
+                        );
+                        if ($(this).hasClass("pull-bs-canvas-right"))
+                            $(".bs-canvas-right").addClass("mr-0");
+                        else $(".bs-canvas-left").addClass("ml-0");
+                        return false;
+                    }
+                );
+
+                $(document).on(
+                    "click",
+                    ".bs-canvas-close, .bs-canvas-overlay",
+                    function () {
+                        var elm = $(this).hasClass("bs-canvas-close")
+                            ? $(this).closest(".bs-canvas")
+                            : $(".bs-canvas");
+                        elm.removeClass("mr-0 ml-0");
+                        $(".bs-canvas-overlay").remove();
+                        return false;
+                    }
+                );
+            });
+        </script>
+    </body>
+</html>
